@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marci-deployment
+  labels:
+    app: marci
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: marci
+  template:
+    metadata:
+      labels:
+        app: marci
+    spec:
+      containers:
+      - name: marci
+        image: marci/pointless:sha-abcba0e
+        ports:
+        - containerPort: 3000
+        env:
+          - name: ENV
+            value: prod
